@@ -1,11 +1,11 @@
-# conta_bancaria_v3
+# conta_bancaria_v1-b
 
 - Pequeno projeto Orientado a Objetos construido utilizando o PyCharm de funcionalidades de uma conta bancária. 
-- Contém as mesmas funcionalidades do projeto conta_bancaria_v1, porém com mais classes, métodos e testes unitários. 
+- Contém as mesmas funcionalidades do projeto conta_bancaria_v1-a, porém com mais classes, métodos e testes unitários. 
 
 #Arquivo main.py:
 
-*class Client: possui método construtor e é deicada exclusivamente aos dados do cliente (comparada a versão v1, na v3 fazemos uso dos modificadores de acesso);
+*class Client: possui método construtor e é deicada exclusivamente aos dados do cliente (comparada a versão v1-a, na v1-b fazemos uso dos modificadores de acesso);
 
 *class Historic:possui método construtor o qual declara o momento de abertura de uma conta (usando a biblioteca datetime) e guarda as transações em uma lista, criando assim
 um pequeno histórico bancário; o método print tem um laço de organização para cada transição. (for t in..)
