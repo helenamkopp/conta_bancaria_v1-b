@@ -1,6 +1,7 @@
 import unittest
 from main import Account, Client, Historic
 
+
 class TestMain(unittest.TestCase):
 
     def setUp(self):
@@ -12,6 +13,18 @@ class TestMain(unittest.TestCase):
 
     def tearDown(self):
         pass
+
+    def test_first(self):
+        self.assertEqual(self.c_1.first, "Ana")
+        self.assertEqual(self.c_2.first, "Pedro")
+
+    def test_account_number(self):
+        self.assertIsNot(self.a_1.number, "1111-1")
+        self.assertIsNot(self.a_2.number, "2222-2")
+
+    def test_cpf(self):
+        self.assertIsNot(self.c_1.cpf, "000.000.000-00")
+        self.assertIsNot(self.c_2.cpf, "111.111.111-11")
 
     def test_deposit(self):
         self.a_1.deposit(50)
