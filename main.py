@@ -62,12 +62,20 @@ class Account:
         self._balance += self._balance * tax
 
 
-class SavingsAccount(Account):
+class SavingAccount(Account):
+
+    def __init__(self, number, client, balance, limit=1000.0):
+        super().__init__(number, client, balance, limit)
+
     def update(self, tax):
         self._balance += self._balance * tax * 3
 
 
 class CheckingAccount(Account):
+
+    def __init__(self, number, client, balance, limit=1000.0):
+        super().__init__(number, client, balance, limit)
+
     def update(self, tax):
         self._balance += self._balance * tax * 2
 

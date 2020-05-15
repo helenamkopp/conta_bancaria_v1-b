@@ -1,15 +1,25 @@
 import unittest
-from main import Account, Client, Historic, Checking_Account, Savings_Account
+from main import Account, Client, Historic, CheckingAccount, SavingAccount
 
 
 class TestMain(unittest.TestCase):
 
     def setUp(self):
+        # Clients
         self.c_1 = Client("Ana", "Silva", "555.042.695-95")
         self.c_2 = Client("Pedro", "Ramos", "024.542.358-20")
 
+        # "Normal" accounts
         self.a_1 = Account("1476-6", self.c_1, "5000")
         self.a_2 = Account("1356-7", self.c_2, "6000")
+
+        # Saving accounts
+        self.sa_1 = SavingAccount("3574-6", self.c_1, "2000")
+        self.sa_2 = SavingAccount("4751-3", self.c_2, "3000")
+
+        # Checking accounts
+        self.ca_1 = CheckingAccount("3687-1", self.c_1, "4000")
+        self.ca_2 = CheckingAccount("1473-5", self.c_2, "1000")
 
     def tearDown(self):
         pass
@@ -38,6 +48,16 @@ class TestMain(unittest.TestCase):
 
         self.assertEqual(self.a_1.bank_statement(), 4500.0)
         self.assertEqual(self.a_2.bank_statement(), 6500.0)
+
+    def test_saving_account(self):
+        self.sa_1.update(0.01)
+        self.sa_2.update(0.02)
+
+        self.assertEqual(self.sa_1._balance, 2060)
+        self.assertEqual(self.sa_2._balance, 3180)
+
+    def test_checking_account(self):
+        pass
 
 
 if __name__ == "__main__":
