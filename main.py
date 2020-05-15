@@ -81,3 +81,4 @@ class CheckingAccount(Account):
 
     def deposit(self, amount):
         self._balance += amount - 0.10
+

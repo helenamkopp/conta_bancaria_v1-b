@@ -63,12 +63,15 @@ class TestMain(unittest.TestCase):
         self.assertEqual(self.ca_1._balance, 4080)
         self.assertEqual(self.ca_2._balance, 1040)
 
+
+
     def test_checking_account_deposit(self):
         self.ca_1.deposit(150)
         self.ca_2.deposit(4200)
 
         self.assertEqual(self.ca_1._balance, 4149.9)
         self.assertEqual(self.ca_2._balance, 5199.9)
+
 
 
 if __name__ == "__main__":
