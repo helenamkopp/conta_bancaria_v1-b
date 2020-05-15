@@ -1,5 +1,5 @@
 import unittest
-from main import Account, Client, Historic
+from main import Account, Client, Historic, Checking_Account, Savings_Account
 
 
 class TestMain(unittest.TestCase):
@@ -19,8 +19,8 @@ class TestMain(unittest.TestCase):
         self.assertEqual(self.c_2.first, "Pedro")
 
     def test_account_number(self):
-        self.assertIsNot(self.a_1.number, "1111-1")
-        self.assertIsNot(self.a_2.number, "2222-2")
+        self.assertIsNot(self.a_1._number, "1111-1")
+        self.assertIsNot(self.a_2._number, "2222-2")
 
     def test_cpf(self):
         self.assertIsNot(self.c_1.cpf, "000.000.000-00")
@@ -32,6 +32,12 @@ class TestMain(unittest.TestCase):
 
         self.assertEqual(self.a_1.bank_statement(), 5050.0)
         self.assertEqual(self.a_2.bank_statement(), 6060.0)
+
+    def test_transfer_to(self):
+        self.a_1.transfer_to(self.a_2, 500)
+
+        self.assertEqual(self.a_1.bank_statement(), 4500.0)
+        self.assertEqual(self.a_2.bank_statement(), 6500.0)
 
 
 if __name__ == "__main__":

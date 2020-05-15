@@ -6,7 +6,7 @@ class Client:
     def __init__(self, first, last, cpf):
         self.first = first
         self.last = last
-        self.cpf = cpf
+        self.cpf = str(cpf)
 
 
 class Historic:
@@ -27,33 +27,49 @@ class Account:
     def __init__(self, number, client, balance, limit=1000.0):
         if not isinstance(client, Client):
             raise TypeError(f"client must be of type Client not {type(client)}")
-        self.holder = client
-        self.number = str(number)
-        self.balance = float(balance)
-        self.limit = float(limit)
-        self.historic = Historic()
+        self._holder = client
+        self._number = str(number)
+        self._balance = float(balance)
+        self._limit = float(limit)
+        self._historic = Historic()
 
     def deposit(self, amount):
-        self.balance += amount
-        self.historic.transactions.append(f"Deposit of R$ {amount}")
+        self._balance += amount
+        self._historic.transactions.append(f"Deposit of R$ {amount}")
 
     def withdraw_money(self, amount):
-        if amount > self.balance:
+        if amount > self._balance:
             return False
         else:
-            self.balance -= amount
-            self.historic.transactions.append(f"Cash withdraw of R$ {amount}")
+            self._balance -= amount
+            self._historic.transactions.append(f"Cash withdraw of R$ {amount}")
 
     def bank_statement(self):
-        print(f"Account number: {self.number}\n Account amount: {self.balance}")
-        self.historic.transactions.append(f"Took extract - Balance of {self.balance}")
-        return self.balance
+        print(f"Account number: {self._number}\n Account amount: {self._balance}")
+        self._historic.transactions.append(f"Took extract - Balance of {self._balance}")
+        return self._balance
 
     def transfer_to(self, destiny, amount):
         withdrew = self.withdraw_money(amount)
-        if not withdrew:
+        if withdrew == False:
             return False
         else:
             destiny.deposit(amount)
-            self.historic.transactions.append(f"Transfer of R$ {amount} for account {destiny.number}")
+            self._historic.transactions.append(f"Transfer of R$ {amount} for account {destiny.deposit}")
             return True
+
+    def update(self, tax):
+        self._balance += self._balance * tax
+
+
+class SavingsAccount(Account):
+    def update(self, tax):
+        self._balance += self._balance * tax * 3
+
+
+class CheckingAccount(Account):
+    def update(self, tax):
+        self._balance += self._balance * tax * 2
+
+    def deposit(self, amount):
+        self._balance += amount - 0.10
