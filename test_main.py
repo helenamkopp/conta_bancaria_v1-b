@@ -49,15 +49,26 @@ class TestMain(unittest.TestCase):
         self.assertEqual(self.a_1.bank_statement(), 4500.0)
         self.assertEqual(self.a_2.bank_statement(), 6500.0)
 
-    def test_saving_account(self):
+    def test_saving_account_update(self):
         self.sa_1.update(0.01)
         self.sa_2.update(0.02)
 
         self.assertEqual(self.sa_1._balance, 2060)
         self.assertEqual(self.sa_2._balance, 3180)
 
-    def test_checking_account(self):
-        pass
+    def test_checking_account_update(self):
+        self.ca_1.update(0.01)
+        self.ca_2.update(0.02)
+
+        self.assertEqual(self.ca_1._balance, 4080)
+        self.assertEqual(self.ca_2._balance, 1040)
+
+    def test_checking_account_deposit(self):
+        self.ca_1.deposit(150)
+        self.ca_2.deposit(4200)
+
+        self.assertEqual(self.ca_1._balance, 4149.9)
+        self.assertEqual(self.ca_2._balance, 5199.9)
 
 
 if __name__ == "__main__":
